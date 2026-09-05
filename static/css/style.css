@@ -1,0 +1,556 @@
+/* Global Reset & Variable Configuration */
+:root {
+    --bg-dark: #0a0915;
+    --card-bg: rgba(22, 21, 40, 0.45);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --primary-color: hsl(263, 90%, 60%);
+    --primary-hover: hsl(263, 90%, 50%);
+    --accent-glow: rgba(139, 92, 246, 0.35);
+    --active-green: #10b981;
+    --transition-speed: 0.3s;
+    --glass-blur: 15px;
+    --font-outfit: 'Outfit', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--font-outfit);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+/* Background Aesthetics */
+.background-decor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.glow-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.25;
+}
+
+.orb-1 {
+    top: -10%;
+    right: -10%;
+    width: 45vw;
+    height: 45vw;
+    background: radial-gradient(circle, var(--primary-color) 0%, rgba(0,0,0,0) 80%);
+}
+
+.orb-2 {
+    bottom: -15%;
+    left: -10%;
+    width: 50vw;
+    height: 50vw;
+    background: radial-gradient(circle, hsl(320, 85%, 55%) 0%, rgba(0,0,0,0) 80%);
+}
+
+/* App Layout & Header */
+.app-container {
+    width: 100%;
+    max-width: 950px;
+    z-index: 1;
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #fff 0%, var(--text-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.logo-icon {
+    font-size: 1rem;
+    color: var(--primary-color);
+    -webkit-text-fill-color: var(--primary-color);
+}
+
+.app-header h1 {
+    font-size: 2.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #ffffff 30%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    max-width: 580px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Glassmorphism Card Frame */
+.prediction-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Layout Form Grid */
+.grid-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.section-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 0.75rem;
+}
+
+.section-num {
+    font-size: 0.9rem;
+    background: rgba(139, 92, 246, 0.15);
+    color: #a78bfa;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+}
+
+/* Inputs & Form Groups Styling */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    letter-spacing: 0.25px;
+}
+
+.grid-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+/* Custom Area Input & Slider Styles */
+.area-slider-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Custom Numeric Input */
+input[type="number"] {
+    background: rgba(15, 13, 29, 0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    color: #fff;
+    font-family: var(--font-outfit);
+    font-size: 1rem;
+    outline: none;
+    transition: all var(--transition-speed);
+    width: 100%;
+}
+
+input[type="number"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.25);
+}
+
+/* Custom Sliders styling */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+    transition: transform var(--transition-speed);
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.25);
+    background: #a78bfa;
+}
+
+/* Number selector with button custom widgets */
+.number-selector {
+    display: flex;
+    align-items: center;
+    background: rgba(15, 13, 29, 0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    overflow: hidden;
+    height: 48px;
+}
+
+.number-selector input {
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    padding: 0;
+    width: 100%;
+}
+
+.num-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.25rem;
+    width: 45px;
+    height: 100%;
+    cursor: pointer;
+    transition: background var(--transition-speed), color var(--transition-speed);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.num-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+/* Custom Toggle Card Switches */
+.toggles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.toggle-card {
+    cursor: pointer;
+    position: relative;
+}
+
+.toggle-card input[type="checkbox"] {
+    display: none;
+}
+
+.toggle-content {
+    background: rgba(15, 13, 29, 0.4);
+    border: 1px solid var(--card-border);
+    border-radius: 14px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: all var(--transition-speed);
+    position: relative;
+}
+
+.toggle-icon {
+    font-size: 1.35rem;
+    opacity: 0.8;
+}
+
+.toggle-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.custom-switch {
+    width: 32px;
+    height: 18px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    position: relative;
+    transition: background var(--transition-speed);
+}
+
+.custom-switch::after {
+    content: '';
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #fff;
+    top: 2px;
+    left: 2px;
+    transition: transform var(--transition-speed);
+}
+
+/* Active checked status styling */
+.toggle-card input[type="checkbox"]:checked + .toggle-content {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.4);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.1);
+}
+
+.toggle-card input[type="checkbox"]:checked + .toggle-content .toggle-label {
+    color: #fff;
+}
+
+.toggle-card input[type="checkbox"]:checked + .toggle-content .custom-switch {
+    background: var(--primary-color);
+}
+
+.toggle-card input[type="checkbox"]:checked + .toggle-content .custom-switch::after {
+    transform: translateX(14px);
+}
+
+/* Furnishing Status Segmented Control Styling */
+.furnishing-group {
+    margin-top: 0.5rem;
+}
+
+.segmented-control {
+    display: flex;
+    background: rgba(15, 13, 29, 0.6);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 4px;
+    width: 100%;
+}
+
+.segmented-control input[type="radio"] {
+    display: none;
+}
+
+.segment-label {
+    flex: 1;
+    text-align: center;
+    padding: 0.65rem 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.segmented-control input[type="radio"]:checked + .segment-label {
+    background: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 4px 12px rgba(139, 92, 246, 0.25);
+}
+
+/* Button & Submission formatting */
+.form-submit-container {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.glow-button {
+    background: linear-gradient(135deg, var(--primary-color) 0%, hsl(295, 80%, 55%) 100%);
+    border: none;
+    outline: none;
+    border-radius: 14px;
+    padding: 1.15rem 3rem;
+    color: #fff;
+    font-family: var(--font-outfit);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.35);
+    width: 100%;
+    max-width: 400px;
+}
+
+.glow-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.5);
+}
+
+.glow-button:active {
+    transform: translateY(1px);
+}
+
+.glow-button span {
+    position: relative;
+    z-index: 2;
+}
+
+/* Result panel CSS details */
+.result-pane {
+    grid-column: span 2;
+    margin-top: 2rem;
+    animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.result-glass {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px dashed rgba(139, 92, 246, 0.3);
+    border-radius: 18px;
+    padding: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.result-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 2.5px;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.price-display {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #fff;
+    background: linear-gradient(135deg, #fff 40%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.result-disclaimer {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    font-weight: 300;
+}
+
+/* Loading Spinner styles */
+.loader {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    border-top-color: var(--primary-color);
+    animation: spin 1s linear infinite;
+}
+
+.loader span {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Animations */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+    }
+    
+    .app-header h1 {
+        font-size: 2rem;
+    }
+    
+    .prediction-card {
+        padding: 1.5rem;
+    }
+    
+    .grid-form {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .form-submit-container, .result-pane, .loader {
+        grid-column: span 1;
+    }
+    
+    .price-display {
+        font-size: 2.5rem;
+    }
+}

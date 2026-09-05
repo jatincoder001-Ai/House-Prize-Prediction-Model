@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Predict house values instantly using our premium machine learning model. Simply input details like area, bedrooms, amenities, and location preferences to receive an accurate estimate.">
+    <title>Estimo - Premium House Price Predictor</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background-decor">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <div class="app-container">
+        <header class="app-header">
+            <div class="logo">
+                <span class="logo-icon">✦</span> Estimo
+            </div>
+            <h1>Premium House Price Predictor</h1>
+            <p class="subtitle">Enter the property attributes below to obtain a precision market valuation estimate driven by machine learning.</p>
+        </header>
+
+        <main class="prediction-card">
+            <form id="prediction-form" class="grid-form">
+                
+                <!-- Section 1: Property Specifications -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-num">01</span> Property Specifications
+                    </h2>
+                    
+                    <div class="input-group">
+                        <label for="area-input">Area (sq. ft.)</label>
+                        <div class="area-slider-container">
+                            <input type="range" id="area-slider" min="1000" max="20000" step="50" value="5000">
+                            <input type="number" id="area-input" name="area" min="1000" max="20000" value="5000" required>
+                        </div>
+                    </div>
+
+                    <div class="grid-columns">
+                        <div class="input-group">
+                            <label for="bedrooms-input">Bedrooms</label>
+                            <div class="number-selector">
+                                <button type="button" class="num-btn minus" onclick="stepDown('bedrooms-input')">−</button>
+                                <input type="number" id="bedrooms-input" name="bedrooms" min="1" max="10" value="3" readonly>
+                                <button type="button" class="num-btn plus" onclick="stepUp('bedrooms-input')">+</button>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="bathrooms-input">Bathrooms</label>
+                            <div class="number-selector">
+                                <button type="button" class="num-btn minus" onclick="stepDown('bathrooms-input')">−</button>
+                                <input type="number" id="bathrooms-input" name="bathrooms" min="1" max="5" value="1" readonly>
+                                <button type="button" class="num-btn plus" onclick="stepUp('bathrooms-input')">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid-columns">
+                        <div class="input-group">
+                            <label for="stories-input">Stories (Floors)</label>
+                            <div class="number-selector">
+                                <button type="button" class="num-btn minus" onclick="stepDown('stories-input')">−</button>
+                                <input type="number" id="stories-input" name="stories" min="1" max="4" value="2" readonly>
+                                <button type="button" class="num-btn plus" onclick="stepUp('stories-input')">+</button>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="parking-input">Parking Spaces</label>
+                            <div class="number-selector">
+                                <button type="button" class="num-btn minus" onclick="stepDown('parking-input')">−</button>
+                                <input type="number" id="parking-input" name="parking" min="0" max="4" value="1" readonly>
+                                <button type="button" class="num-btn plus" onclick="stepUp('parking-input')">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section 2: Amenities & Features -->
+                <div class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-num">02</span> Features & Location
+                    </h2>
+
+                    <div class="toggles-grid">
+                        <label class="toggle-card" for="mainroad-toggle">
+                            <input type="checkbox" id="mainroad-toggle" name="mainroad" checked>
+                            <div class="toggle-content">
+                                <span class="toggle-icon">🛣️</span>
+                                <span class="toggle-label">Main Road Access</span>
+                                <div class="custom-switch"></div>
+                            </div>
+                        </label>
+
+                        <label class="toggle-card" for="guestroom-toggle">
+                            <input type="checkbox" id="guestroom-toggle" name="guestroom">
+                            <div class="toggle-content">
+                                <span class="toggle-icon">🛌</span>
+                                <span class="toggle-label">Guestroom Include</span>
+                                <div class="custom-switch"></div>
+                            </div>
+                        </label>
+
+                        <label class="toggle-card" for="basement-toggle">
+                            <input type="checkbox" id="basement-toggle" name="basement">
+                            <div class="toggle-content">
+                                <span class="toggle-icon">🛖</span>
+                                <span class="toggle-label">Basement Include</span>
+                                <div class="custom-switch"></div>
+                            </div>
+                        </label>
+
+                        <label class="toggle-card" for="hotwaterheating-toggle">
+                            <input type="checkbox" id="hotwaterheating-toggle" name="hotwaterheating">
+                            <div class="toggle-content">
+                                <span class="toggle-icon">🔥</span>
+                                <span class="toggle-label">Water Heater</span>
+                                <div class="custom-switch"></div>
+                            </div>
+                        </label>
+
+                        <label class="toggle-card" for="airconditioning-toggle">
+                            <input type="checkbox" id="airconditioning-toggle" name="airconditioning" checked>
+                            <div class="toggle-content">
+                                <span class="toggle-icon">❄️</span>
+                                <span class="toggle-label">Air Conditioning</span>
+                                <div class="custom-switch"></div>
+                            </div>
+                        </label>
+
+                        <label class="toggle-card" for="prefarea-toggle">
+                            <input type="checkbox" id="prefarea-toggle" name="prefarea">
+                            <div class="toggle-content">
+                                <span class="toggle-icon">⭐️</span>
+                                <span class="toggle-label">Preferred Location</span>
+                                <div class="custom-switch"></div>
+                            </div>
+                        </label>
+                    </div>
+
+                    <!-- Furnishing Status Segmented Control -->
+                    <div class="input-group furnishing-group">
+                        <label>Furnishing Status</label>
+                        <div class="segmented-control">
+                            <input type="radio" id="furnish-unfurnished" name="furnishingstatus" value="unfurnished">
+                            <label for="furnish-unfurnished" class="segment-label">Unfurnished</label>
+
+                            <input type="radio" id="furnish-semi" name="furnishingstatus" value="semi-furnished" checked>
+                            <label for="furnish-semi" class="segment-label">Semi-Furnished</label>
+
+                            <input type="radio" id="furnish-furnished" name="furnishingstatus" value="furnished">
+                            <label for="furnish-furnished" class="segment-label">Furnished</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit and Results display -->
+                <div class="form-submit-container">
+                    <button type="submit" id="submit-btn" class="glow-button">
+                        <span>Calculate Predicted Value</span>
+                        <div class="btn-glow"></div>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Predictions Result Pane -->
+            <div id="result-pane" class="result-pane hidden">
+                <div class="result-glass">
+                    <div class="pulse-ring"></div>
+                    <span class="result-subtitle">ESTIMATED MARKET VALUE</span>
+                    <h3 id="predicted-price" class="price-display">₹0.00</h3>
+                    <p class="result-disclaimer">Calculated using Linear Regression trained on historical housing metrics.</p>
+                </div>
+            </div>
+            
+            <!-- Loader -->
+            <div id="loader" class="loader hidden">
+                <div class="spinner"></div>
+                <span>Analyzing housing parameters...</span>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripting for interactivity and AJAX -->
+    <script>
+        // Synchronize Area slider and number inputs
+        const areaSlider = document.getElementById('area-slider');
+        const areaInput = document.getElementById('area-input');
+
+        areaSlider.addEventListener('input', (e) => {
+            areaInput.value = e.target.value;
+        });
+        areaInput.addEventListener('input', (e) => {
+            let val = parseInt(e.target.value);
+            if (val >= 1000 && val <= 20000) {
+                areaSlider.value = val;
+            }
+        });
+
+        // Numeric increment/decrement utility
+        function stepUp(id) {
+            const el = document.getElementById(id);
+            const max = parseInt(el.max);
+            const curr = parseInt(el.value);
+            if (curr < max) {
+                el.value = curr + 1;
+            }
+        }
+
+        function stepDown(id) {
+            const el = document.getElementById(id);
+            const min = parseInt(el.min);
+            const curr = parseInt(el.value);
+            if (curr > min) {
+                el.value = curr - 1;
+            }
+        }
+
+        // Form Submission via AJAX fetch
+        const form = document.getElementById('prediction-form');
+        const resultPane = document.getElementById('result-pane');
+        const loader = document.getElementById('loader');
+        const submitBtn = document.getElementById('submit-btn');
+        const priceDisplay = document.getElementById('predicted-price');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Disable buttons and show loading spinner
+            submitBtn.disabled = true;
+            resultPane.classList.add('hidden');
+            loader.classList.remove('hidden');
+
+            // Gather inputs
+            const area = parseFloat(document.getElementById('area-input').value);
+            const bedrooms = parseInt(document.getElementById('bedrooms-input').value);
+            const bathrooms = parseInt(document.getElementById('bathrooms-input').value);
+            const stories = parseInt(document.getElementById('stories-input').value);
+            const parking = parseInt(document.getElementById('parking-input').value);
+
+            // Boolean toggle states
+            const mainroad = document.getElementById('mainroad-toggle').checked ? 'yes' : 'no';
+            const guestroom = document.getElementById('guestroom-toggle').checked ? 'yes' : 'no';
+            const basement = document.getElementById('basement-toggle').checked ? 'yes' : 'no';
+            const hotwaterheating = document.getElementById('hotwaterheating-toggle').checked ? 'yes' : 'no';
+            const airconditioning = document.getElementById('airconditioning-toggle').checked ? 'yes' : 'no';
+            const prefarea = document.getElementById('prefarea-toggle').checked ? 'yes' : 'no';
+
+            // Selected radio value
+            const furnishingstatus = document.querySelector('input[name="furnishingstatus"]:checked').value;
+
+            // Formulate payload object
+            const payload = {
+                area, bedrooms, bathrooms, stories, parking,
+                mainroad, guestroom, basement, hotwaterheating, airconditioning, prefarea,
+                furnishingstatus
+            };
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await response.json();
+                
+                // Mimic delay for premium loading experience (visual polish)
+                setTimeout(() => {
+                    loader.classList.add('hidden');
+                    submitBtn.disabled = false;
+
+                    if (data.success) {
+                        // Display price with custom count animation
+                        priceDisplay.innerText = data.formatted_prediction;
+                        resultPane.classList.remove('hidden');
+                        resultPane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    } else {
+                        alert("Error: " + (data.error || "Failed to parse prediction."));
+                    }
+                }, 750);
+
+            } catch (err) {
+                console.error(err);
+                loader.classList.add('hidden');
+                submitBtn.disabled = false;
+                alert("Network error or prediction request failed.");
+            }
+        });
+    </script>
+</body>
+</html>
