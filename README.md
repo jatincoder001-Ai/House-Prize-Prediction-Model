@@ -141,7 +141,7 @@ Follow these steps to run this project on your computer.
 Open your terminal and run:
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git
+https://github.com/jatincoder001-Ai/House-Prediction-Model.git
 ```
 
 ---
@@ -149,7 +149,7 @@ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY-NAME.git
 ## 2️⃣ Go Inside the Project Folder
 
 ```bash
-cd YOUR-REPOSITORY-NAME
+cd House-Prediction-Model
 ```
 
 ---
